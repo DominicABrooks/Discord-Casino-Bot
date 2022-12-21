@@ -1,5 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const genRandom = require('../utils/generate-random.js');
+const dice = require('../utils/dice-to-emote.js');
+
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -50,7 +52,8 @@ module.exports = {
 
         console.log('win: ' + win);
 
+        
         //retuns the win amount and information
-        await interaction.reply(`You bet $${bet} on: ${number}\nYou rolled: ${rolls.at(0)}, ${rolls.at(1)}, ${rolls.at(2)}\nYou win: $${win}`);
+        await interaction.reply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmote(rolls.at(0))}, ${dice.toEmote(rolls.at(1))}, ${dice.toEmote(rolls.at(2))}\nYou win: $${win}`);
     },
 };
