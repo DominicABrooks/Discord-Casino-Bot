@@ -1,5 +1,35 @@
+const genRandom = require('./generate-random.js');
+
+
 module.exports = {
-    toEmoteRolling: "<a:rolling:1054957668097339462>",
+    toEmoteRolling: function() {
+        random = genRandom.getRndInteger(1,6);
+        // @TODO: make prettier using array and index later.
+        switch(random)
+        {
+            case 1:
+                roll_gif = "<a:rolling:1054957668097339462>";
+                break;
+            case 2:
+                roll_gif = "<a:rolling2:1055106503952060536>";
+                break;
+            case 3:
+                roll_gif = "<a:rolling3:1055107508664029224>";
+                break;
+            case 4:
+                roll_gif = "<a:rolling4:1055104192735346719>";
+                break;
+            case 5:
+                roll_gif = "<a:rolling5:1055104194085933097>";
+                break;
+            case 6:
+                roll_gif = "<a:rolling6:1055104194954145824>";
+                break;
+            default:
+                console.log("Invalid Face - " + face);
+        }
+        return roll_gif;
+    },
     toEmote: function (face) {
         switch(face) 
         {
