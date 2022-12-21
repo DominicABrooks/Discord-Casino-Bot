@@ -21,7 +21,9 @@ module.exports = {
         .addIntegerOption(option =>
             option
                 .setName('bet')
-                .setDescription('Choose bet amount')),
+                .setDescription('Choose bet amount')
+                .setMinValue(1)
+                .setMaxValue(1000)),
     async execute(interaction) {
         // interaction.user is the object representing the User who ran the command
         // interaction.member is the GuildMember object, which represents the user in the specific guild
