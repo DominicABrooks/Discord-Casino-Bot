@@ -5,6 +5,7 @@ module.exports = {
     toEmoteRolling: function() {
         random = genRandom.getRndInteger(1,6);
         // @TODO: make prettier using array and index later.
+        // @TODO: make function take optional argument to generate multiple unique so no two gif are same utilizing new Set()
         switch(random)
         {
             case 1:
