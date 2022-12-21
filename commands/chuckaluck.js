@@ -22,31 +22,27 @@ module.exports = {
         let win = 0;
         
         // gets the number bet on & bet amount
-        const number = interaction.options.getIntegers('number'); 
+        const number = interaction.options.getInteger('number'); 
         const bet = interaction.options.getInteger('bet') ?? 0;
 
-        // rolls three d6 dice 
-		const die1 = genRandom.rollDice(1, 6);
-        const die2 = genRandom.rollDice(1, 6);
-        const die3 = genRandom.rollDice(1, 6);
-
-        console.log('win' + win);
+        console.log('win: ' + win);
 
         const rolls = genRandom.rollDice(3, 6);
+        console.log(rolls);
         rolls.forEach(element => 
         {
             console.log('element' + element);
             console.log('number' + number);
             if (element === number) 
             {
-            console.log('elementnumber' + element === number);
-               win += bet;
+                console.log('elementnumber' + element === number);
+                win += bet;
             }
         });
-n
-        console.log('win' + win);
+        
+        console.log('win: ' + win);
 
         //retuns the win amount and information
-        await interaction.reply(`You bet $${bet} on: ${number}\nYou rolled: ${die1}, ${die2}, ${die3}\nYou win: $${win}`);
+        await interaction.reply(`You bet $${bet} on: ${number}\nYou rolled: ${rolls.at(0)}, ${rolls.at(1)}, ${rolls.at(2)}\nYou win: $${win}`);
     },
 };
