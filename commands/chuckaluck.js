@@ -22,7 +22,7 @@ module.exports = {
         let win = 0;
         
         // gets the number bet on & bet amount
-        const number = interaction.options.getInteger('number'); 
+        const number = interaction.options.getIntegers('number'); 
         const bet = interaction.options.getInteger('bet') ?? 0;
 
         // rolls three d6 dice 
@@ -30,32 +30,21 @@ module.exports = {
         const die2 = genRandom.rollDice(1, 6);
         const die3 = genRandom.rollDice(1, 6);
 
-        // initalizes win conditions of the dice as false
-        let die1W = false;
-        let die2W = false;
-        let die3W = false;
-        
-        // adjusts win conditions of dice if they equal number
-        if(die1 == number){
-            die1W = true;
-        }
-        if(die2 == number){
-            die2W = true;
-        }
-        if(die3 == number){
-            die3W = true;
-        }
+        console.log('win' + win);
 
-        // calculates win amount from win conditions
-        if(die1W == true && die2W == true && die3W == true){
-            win = bet * 3;
-        }
-        else if(die1W == true && die2W == true || die1W == true && die3W == true|| die2W == true && die3W == true){
-            win = bet * 2;
-        }
-        else if(die1W == true || die2W == true || die3W == true){
-            win = bet;
-        }
+        const rolls = genRandom.rollDice(3, 6);
+        rolls.forEach(element => 
+        {
+            console.log('element' + element);
+            console.log('number' + number);
+            if (element === number) 
+            {
+            console.log('elementnumber' + element === number);
+               win += bet;
+            }
+        });
+n
+        console.log('win' + win);
 
         //retuns the win amount and information
         await interaction.reply(`You bet $${bet} on: ${number}\nYou rolled: ${die1}, ${die2}, ${die3}\nYou win: $${win}`);
