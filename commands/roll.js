@@ -15,10 +15,10 @@ module.exports = {
         // interaction.user is the object representing the User who ran the command
         // interaction.member is the GuildMember object, which represents the user in the specific guild
         
-        const number = interaction.options.getInteger('number') ?? 1;
-        const sides = interaction.options.getInteger('sides') ?? 6;
-		const arr = genRandom.rollDice(number, sides);
-		const sum = arr.reduce((acc, cur) => acc + cur, 0);
+        const number = interaction.options.getInteger('number') ?? 1; // gets the number of dice to roll
+        const sides = interaction.options.getInteger('sides') ?? 6; // gets the number of sides on dice
+		const arr = genRandom.rollDice(number, sides); // calls rollDice fuction for accurate dice rolls, adds each roll to array arr
+		const sum = arr.reduce((acc, cur) => acc + cur, 0); // sums array arr of dice rolls for a total
 
         await interaction.reply(`${sum}`);
     },
