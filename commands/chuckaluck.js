@@ -54,6 +54,9 @@ module.exports = {
 
         
         //retuns the win amount and information
-        await interaction.reply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmote(rolls.at(0))}, ${dice.toEmote(rolls.at(1))}, ${dice.toEmote(rolls.at(2))}\nYou win: $${win}`);
+        await interaction.reply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmoteRolling}, ${dice.toEmoteRolling}, ${dice.toEmoteRolling}`);
+        setTimeout(async () => {
+            await interaction.editReply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmote(rolls.at(0))}, ${dice.toEmote(rolls.at(1))}, ${dice.toEmote(rolls.at(2))}\nYou win: **$${win}**`);
+        }, "1000")
     },
 };

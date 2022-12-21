@@ -1,4 +1,5 @@
 module.exports = {
+    toEmoteRolling: "<a:rolling:1054957668097339462>",
     toEmote: function (face) {
         switch(face) 
         {
