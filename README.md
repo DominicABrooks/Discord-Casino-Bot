@@ -1,7 +1,8 @@
 ![](https://cdn.discordapp.com/attachments/1055953137384554580/1055963971422785596/banner.png)
+
 <p align="center">
   <a href="https://discord.gg/gb2fJUJpVc">
-    <img src="https://discordapp.com/api/guilds/1055953136633778276/widget.png?style=banner2" alt="Discord Server">
+    <img src="https://discordapp.com/api/guilds/1055953136633778276/widget.png?style=shield" alt="Discord Server">
   </a>
 </p>
 
