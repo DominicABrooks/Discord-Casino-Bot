@@ -1,7 +1,7 @@
 
 // creates a deck
 module.exports = {
-    class: Card{
+    Card: class {
         newCard(shade, type, number)
         {
             color = shade;
@@ -11,8 +11,7 @@ module.exports = {
     },
 
     // creates a normal deck (no jokers)
-    class: Deck{
-    newDeck()
+    new_deck: function ()
     {
         // array of possible colors
         const colors = ["red", "black"];
@@ -38,11 +37,11 @@ module.exports = {
             }
         }
         return deck;
-    }
     },
 
     // shows the deck in the terminal
-    printCards: function(cards) {
+    print_cards: function(cards) 
+    {
         cards.forEach(card => 
             {
                 console.log(card.color);
