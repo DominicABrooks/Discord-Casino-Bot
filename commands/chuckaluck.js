@@ -37,8 +37,7 @@ module.exports = {
         const number = interaction.options.getInteger('number'); 
         const bet = interaction.options.getInteger('bet') ?? 0;
 
-        console.log('win: ' + win);
-
+        // roll 3 dice, if any roll is equal to number, then increases win amount by bet.
         const rolls = genRandom.rollDice(3, 6);
         console.log(rolls);
         rolls.forEach(element => 
@@ -49,9 +48,6 @@ module.exports = {
                 win += bet;
             }
         });
-
-        console.log('win: ' + win);
-
         
         //retuns the win amount and information
         await interaction.reply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmoteRolling()}, ${dice.toEmoteRolling()}, ${dice.toEmoteRolling()}`);
