@@ -1,17 +1,15 @@
 
-// creates a deck
-module.exports = {
-    Card: class {
-        newCard(shade, type, number)
-        {
-            color = shade;
-            suit = type;
-            value = number;
-        }
-    },
+
+class Card {
+    constructor(color, suit, value)
+    {
+        this.color = color;
+        this.suit = suit;
+        this.value = value;
+    }
 
     // creates a normal deck (no jokers)
-    new_deck: function ()
+    new_deck()
     {
         // array of possible colors
         const colors = ["red", "black"];
@@ -37,16 +35,24 @@ module.exports = {
             }
         }
         return deck;
-    },
+    }
 
     // shows the deck in the terminal
-    print_cards: function(cards) 
+    print_cards(cards) 
     {
-        cards.forEach(card => 
+        console.log(cards);
+        cards.forEach(cards => 
             {
-                console.log(card.color);
-                console.log(card.suit);
-                console.log(card.value);
+                console.log(cards.color);
+                console.log(cards.suit);
+                console.log(cards.value);
             });
     }
-}
+    }
+
+// creates a deck
+module.exports = Card;
+    
+
+    
+    
