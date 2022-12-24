@@ -10,9 +10,18 @@ module.exports = {
 		// interaction.member is the GuildMember object, which represents the user in the specific guild
 
         let deck = cards.new_deck();
+		let hand = [];
+
 	    cards.print_cards(deck);
 		cards.shuffle(deck);
+
 		cards.print_cards(deck);
+
+		cards.deal(deck, hand);
+
+		cards.print_cards(deck);
+		cards.print_cards(hand);
+
 		await interaction.reply("the shit worked");
 	},
 };

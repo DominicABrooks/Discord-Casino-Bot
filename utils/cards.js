@@ -30,7 +30,7 @@ module.exports = {
                 // runs 13 times to make all cards of a specific color and suit
                 for(value = 1; value < 14; value++)
                 {
-                    let card = new this.Card(colors[color], color > 0 ? redSuits[suit] : blackSuits[suit], value);
+                    let card = new this.Card(colors[color], color > 0 ? blackSuits[suit] : redSuits[suit], value);
                     deck.push(card);
                 }
             }
@@ -48,13 +48,40 @@ module.exports = {
 
             // Pick a remaining element.
             randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
+            currentIndex = currentIndex - 1;
 
             // And swap it with the current element.
             [cards[currentIndex], cards[randomIndex]] = [cards[randomIndex], cards[currentIndex]];
         }
 
         return cards;
+    },
+
+    deal: function(cards, hand)
+    {
+        hand.push(cards.pop());
+    },
+
+    deal_amount: function(number, cards, hand)
+    {
+        for(i = number; i > 0; i--)
+        {
+            this.deal(cards, hand);
+        }
+    },
+
+    get_value: function(cards)
+    {
+        let currentIndex = cards.length;
+        
+        let value = 1;
+
+        for(i = currentIndex; i > 0; i--)
+        {
+            value += cards[i][value];
+        }
+
+        return value;
     },
 
     // shows the deck in the terminal
