@@ -72,13 +72,13 @@ module.exports = {
 
     get_value: function(cards)
     {
-        let currentIndex = cards.length;
+        let currentIndex = cards.length - 1;
         
-        let value = 1;
+        let value = 0;
 
-        for(i = currentIndex; i > 0; i--)
+        for(i = currentIndex; i >= 0; i--)
         {
-            value += cards[i][value];
+            value += cards[i].value;
         }
 
         return value;
