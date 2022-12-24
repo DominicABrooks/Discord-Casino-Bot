@@ -49,11 +49,11 @@ module.exports = {
 
     // shows the deck in the terminal
     printCards: function(cards) {
-        cards.forEach(element => 
+        cards.forEach(card => 
             {
-                console.log(element.color);
-                console.log(element.suit);
-                console.log(element.value);
+                console.log(card.color);
+                console.log(card.suit);
+                console.log(card.value);
             });
     }
 }
