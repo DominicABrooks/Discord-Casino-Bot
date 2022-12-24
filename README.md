@@ -1,3 +1,4 @@
+# This bot is currently under construction! 🚧 
 ![](https://cdn.discordapp.com/attachments/1055953137384554580/1055963971422785596/banner.png)
 
 <p align="center">
@@ -29,3 +30,5 @@ Please be aware of a few things. You must use `Node v18.12.1` and up. You will a
 | ------------- | ------------- |
 | Fully fleshed out economy | Casino bot has a fully setup money system  |
 | New Feature | TODO: Actually create the first feature...  |
+
+**Note:** Casino Bot is in *very early stages*, bugs are to be expected and the feature count will be low, but overtime bugs will be patched and the bot will expand!
