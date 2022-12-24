@@ -1,3 +1,5 @@
+const { forEach } = require("lodash");
+
 module.exports = {
     Card: class
     {
@@ -72,14 +74,11 @@ module.exports = {
 
     get_value: function(cards)
     {
-        let currentIndex = cards.length - 1;
-        
         let value = 0;
 
-        for(i = currentIndex; i >= 0; i--)
-        {
-            value += cards[i].value;
-        }
+        forEach(cards =>
+            value += cards[i].value
+        )
 
         return value;
     },
