@@ -32,7 +32,7 @@ module.exports = {
         // interaction.member is the GuildMember object, which represents the user in the specific guild
 
         // initalizes win amount to 0
-        let win = bet;
+        let win = 0;
         
         // gets the number bet on & bet amount
         const number = interaction.options.getInteger('number'); 
