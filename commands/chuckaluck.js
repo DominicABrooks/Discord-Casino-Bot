@@ -12,6 +12,7 @@ module.exports = {
                 .setName('number')
                 .setDescription('Pick a number to bet on')
                 .setRequired(true)
+                // allow user to pick a face of die
                 .addChoices(
                     { name:"1",value:1 },
                     { name:"2",value:2 },
@@ -37,9 +38,11 @@ module.exports = {
         const number = interaction.options.getInteger('number'); 
         const bet = interaction.options.getInteger('bet') ?? 0;
 
-        // roll 3 dice, if any roll is equal to number, then increases win amount by bet.
+        // roll 3 dice, save in rolls
         const rolls = genRandom.rollDice(3, 6);
         console.log(rolls);
+        
+        // If any roll is equal to number, then increases win amount by bet.
         rolls.forEach(element => 
         {
             if (element === number) 
@@ -49,8 +52,9 @@ module.exports = {
             }
         });
         
-        //retuns the win amount and information
+        // starts roll animation
         await interaction.reply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmoteRolling()}, ${dice.toEmoteRolling()}, ${dice.toEmoteRolling()}`);
+        // post final info and won amount
         setTimeout(async () => {
             await interaction.editReply(`You bet $${bet} on: ${number} ${dice.toEmote(number)}\nYou rolled: ${dice.toEmote(rolls.at(0))}, ${dice.toEmote(rolls.at(1))}, ${dice.toEmote(rolls.at(2))}\nYou win: **$${win}**`);
         }, "1000")
