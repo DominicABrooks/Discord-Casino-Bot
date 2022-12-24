@@ -11,6 +11,8 @@ module.exports = {
 
         let deck = cards.new_deck();
 	    cards.print_cards(deck);
+		cards.shuffle(deck);
+		cards.print_cards(deck);
 		await interaction.reply("the shit worked");
 	},
 };
