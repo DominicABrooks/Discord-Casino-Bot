@@ -28,7 +28,7 @@ module.exports = {
             for(suit = 0; suit < 2; suit++)
             {
                 // runs 13 times to make all cards of a specific color and suit
-                for(value = 0; value < 13; value++)
+                for(value = 1; value < 14; value++)
                 {
                     let card = new this.Card(colors[color], color > 0 ? redSuits[suit] : blackSuits[suit], value);
                     deck.push(card);
@@ -42,12 +42,6 @@ module.exports = {
     print_cards: function(cards) 
     {
         console.log(cards);
-        cards.forEach(cards => 
-            {
-                console.log(cards.color);
-                console.log(cards.suit);
-                console.log(cards.value);
-            });
     }
 };
 
