@@ -7,6 +7,7 @@ module.exports = {
         const suit = type;
         const value = number; 
     },
+    
     // creates a normal deck (no jokers)
     newDeck: function()
     {
@@ -24,23 +25,12 @@ module.exports = {
         for(i = 0; i < 2; i++)
         {
             // runs twice for both suits of a color
-            for(j = 0; i < 2; j++)
+            for(j = 0; j < 2; j++)
             {
-                // if the first color then runs 13 times to make all cards of that color and suit
-                if(i > 0)
+                // runs 13 times to make all cards of a specific color and suit
+                for(k = 0; k < 13; k++)
                 {
-                    for(k = 0; k < 13; k++)
-                    {
-                        deck.push(newCard(colors(i), redSuits(j), k));
-                    }
-                }
-                // if the second color then runs 13 times to make all cards of that color and suit
-                else
-                {
-                    for(k = 0; k < 13; k++)
-                    {
-                        deck.push(newCard(colors(i), blackSuits(j), k));
-                    }
+                    deck.push(newCard(colors(i), i > 0 ? redSuits(j) : blackSuits(j), k));
                 }
             }
         }
