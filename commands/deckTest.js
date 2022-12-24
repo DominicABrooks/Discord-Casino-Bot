@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require('discord.js');
-const Card = require('../utils/cards.js');
 const cards = require('../utils/cards.js');
 
 module.exports = {
@@ -10,9 +9,8 @@ module.exports = {
 		// interaction.user is the object representing the User who ran the command
 		// interaction.member is the GuildMember object, which represents the user in the specific guild
 
-        const cards = new Card();
         let deck = cards.new_deck();
-	    
-		await interaction.reply(cards.print_cards(deck));
+	    cards.print_cards(deck);
+		await interaction.reply("the shit worked");
 	},
 };

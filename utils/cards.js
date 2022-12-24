@@ -1,15 +1,15 @@
-
-
-class Card {
-    constructor(color, suit, value)
+module.exports = {
+    Card: class
     {
-        this.color = color;
-        this.suit = suit;
-        this.value = value;
-    }
-
+        constructor(color, suit, value)
+        {
+            this.color = color;
+            this.suit = suit;
+            this.value = value;
+        }
+    },
     // creates a normal deck (no jokers)
-    new_deck()
+    new_deck: function()
     {
         // array of possible colors
         const colors = ["red", "black"];
@@ -30,15 +30,16 @@ class Card {
                 // runs 13 times to make all cards of a specific color and suit
                 for(value = 0; value < 13; value++)
                 {
-                    deck.push(new Card(colors[color], color > 0 ? redSuits[suit] : blackSuits[suit], value));
+                    let card = new this.Card(colors[color], color > 0 ? redSuits[suit] : blackSuits[suit], value);
+                    deck.push(card);
                 }
             }
         }
         return deck;
-    }
+    },
 
     // shows the deck in the terminal
-    print_cards(cards) 
+    print_cards: function(cards) 
     {
         console.log(cards);
         cards.forEach(cards => 
@@ -48,10 +49,11 @@ class Card {
                 console.log(cards.value);
             });
     }
-    }
+};
 
-// creates a deck
-module.exports = Card;
+
+
+
     
 
     
