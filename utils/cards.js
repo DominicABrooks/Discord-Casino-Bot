@@ -1,15 +1,18 @@
 
 // creates a deck
 module.exports = {
-    newCard: function(shade, type, number)
-    {
-        const color = shade;
-        const suit = type;
-        const value = number; 
+    class: Card{
+        newCard(shade, type, number)
+        {
+            color = shade;
+            suit = type;
+            value = number;
+        }
     },
 
     // creates a normal deck (no jokers)
-    newDeck: function()
+    class: Deck{
+    newDeck()
     {
         // array of possible colors
         const colors = ["red", "black"];
@@ -30,11 +33,12 @@ module.exports = {
                 // runs 13 times to make all cards of a specific color and suit
                 for(value = 0; value < 13; value++)
                 {
-                    deck.push(newCard(colors(color), color > 0 ? redSuits(suit) : blackSuits(suit), value));
+                    deck.push(new Card(colors[color], color > 0 ? redSuits[suit] : blackSuits[suit], value));
                 }
             }
         }
         return deck;
+    }
     },
 
     // shows the deck in the terminal
