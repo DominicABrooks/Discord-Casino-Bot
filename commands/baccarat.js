@@ -259,7 +259,9 @@ module.exports = {
     {
         // if player hand or banker hand total to 8 or 9
         if((pHand == 8 || pHand == 9) || (bHand == 8 || bHand == 9))
-        {
+        {  
+            let winning = false;
+
             // checks for a tie
             if(pHand == bHand)
             {
