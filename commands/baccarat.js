@@ -257,6 +257,9 @@ module.exports = {
     // checks for win contion
     checkForWin: function()
     {
+        // initalizes winning condition as false
+        const winning = false;
+
         // if player hand or banker hand total to 8 or 9, enters if
         if((pHand == 8 || pHand == 9) || (bHand == 8 || bHand == 9))
         {
@@ -264,19 +267,22 @@ module.exports = {
             if(pHand == bHand)
             {
                 win = tiebet * 8;
+                winning = true;
             }
             // checks for a player win
             else if(pHand > bHand)
             {
                 win = playerbet;
+                winning = true;
             }
             // defaults to banker
             else
             {
                 win = bankerbet - (bankerbet * .05);
+                winning = true;
             }
         }
+        
+        return winning;
     }
 };
-
-    
