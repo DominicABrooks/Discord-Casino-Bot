@@ -1,5 +1,3 @@
-const { forEach } = require("lodash");
-
 module.exports = {
     Card: class
     {

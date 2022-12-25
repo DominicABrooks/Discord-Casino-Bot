@@ -148,8 +148,6 @@ module.exports = {
         // determines if player or banker has a natural win or if there is a natural tie
         while(!checkForWin())
         {
-            // saves the starting player hand value
-            const pValueOriginal = pValue;
 
             // player hand goes first, per regulation
             // if player hand is less than 6
