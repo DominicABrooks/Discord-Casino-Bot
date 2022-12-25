@@ -120,7 +120,7 @@ module.exports = {
             const pValueOriginal = pValue;
 
             // player hand goes first, per regulation
-            // if player hand is less than 6, enters the if
+            // if player hand is less than 6
             if(pValue < 6)
             {
                 // deals one card to player hand, calculate new player hand value
@@ -134,7 +134,7 @@ module.exports = {
                 }
             }
 
-            // if the banker hand value is less than 3, enter the if
+            // if the banker hand value is less than 3
             if(bValue < 3)
             {
                 //deals one card to banker hand, calculate new banker hand value
@@ -154,10 +154,10 @@ module.exports = {
                 break;
             }
 
-            // if the banker hand value is equal to 3, enter the if
+            // if the banker hand value is equal to 3
             if(bValue == 3)
             {
-                // if the thrid card in the player hand is not 8, enter the if
+                // if the thrid card in the player hand is not 8
                 if(pHand[2].value != 8)
                 {
                     //deals one card to banker hand, calculate new banker hand value
@@ -178,10 +178,10 @@ module.exports = {
                 break;
             }
 
-            // if the banker hand value is equal to 4, enter the if
+            // if the banker hand value is equal to 4
             if(bValue == 4)
             {
-                // if the thrid card in the player hand is less than 2 or greater than , enter the if
+                // if the thrid card in the player hand is less than 2 or greater
                 if(pHand[2].value < 2 || pHand[2].value > 7)
                 {
                     //deals one card to banker hand, calculate new banker hand value
@@ -202,10 +202,10 @@ module.exports = {
                 break;
             }
 
-            // if the banker hand value is equal to 5, enter the if
+            // if the banker hand value is equal to 5
             if(bValue == 5)
             {
-                // if the thrid card in the player hand is less than 4 or greater than 7, enter the if
+                // if the thrid card in the player hand is less than 4 or greater than 7
                 if(pHand[2].value < 4 || pHand[2].value > 7)
                 {
                     //deals one card to banker hand, calculate new banker hand value
@@ -226,10 +226,10 @@ module.exports = {
                 break;
             }
 
-            // if the banker hand value is equal to 6, enter the if
+            // if the banker hand value is equal to 6
             if(bValue == 6)
             {
-                // if the thrid card in the player hand is less than 4 or greater than 7, enter the if
+                // if the thrid card in the player hand is less than 4 or greater than 7
                 if(pHand[2].value == 6 || pHand[2].value ==7)
                 {
                     //deals one card to banker hand, calculate new banker hand value
@@ -251,13 +251,13 @@ module.exports = {
             }
         }
     
-    await interaction.reply(`not too fucked up. You win: $${win}`);
+        await interaction.reply(`not too fucked up. You win: $${win}`);
     },
     
-    // checks for win contion
+    // checks for win condition
     checkForWin: function()
     {
-        // if player hand or banker hand total to 8 or 9, enters if
+        // if player hand or banker hand total to 8 or 9
         if((pHand == 8 || pHand == 9) || (bHand == 8 || bHand == 9))
         {
             // checks for a tie
