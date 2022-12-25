@@ -2,6 +2,38 @@ const { SlashCommandBuilder } = require('discord.js');
 const { get_value } = require('../utils/cards.js');
 const cards = require('../utils/cards.js');
 
+// checks for win condition
+function checkForWin()
+{
+    return winning = true;
+
+    // if player hand or banker hand total to 8 or 9
+    if((pHand == 8 || pHand == 9) || (bHand == 8 || bHand == 9))
+    {  
+
+        // checks for a tie
+        if(pHand == bHand)
+        {
+            win = tiebet * 8;
+            winning = true;
+        }
+        // checks for a player win
+        else if(pHand > bHand)
+        {
+            win = playerbet;
+            winning = true;
+        }
+        // defaults to banker
+        else
+        {
+            win = bankerbet - (bankerbet * .05);
+            winning = true;
+        }
+    }
+
+    return winning;
+}
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('baccarat')
@@ -253,35 +285,4 @@ module.exports = {
     
         await interaction.reply(`not too fucked up. You win: $${win}`);
     },
-    
-    // checks for win condition
-    checkForWin: function()
-    {
-        // if player hand or banker hand total to 8 or 9
-        if((pHand == 8 || pHand == 9) || (bHand == 8 || bHand == 9))
-        {  
-            let winning = false;
-
-            // checks for a tie
-            if(pHand == bHand)
-            {
-                win = tiebet * 8;
-                winning = true;
-            }
-            // checks for a player win
-            else if(pHand > bHand)
-            {
-                win = playerbet;
-                winning = true;
-            }
-            // defaults to banker
-            else
-            {
-                win = bankerbet - (bankerbet * .05);
-                winning = true;
-            }
-        }
-
-        return winning;
-    }
 };
