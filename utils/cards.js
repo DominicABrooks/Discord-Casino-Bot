@@ -59,11 +59,13 @@ module.exports = {
         return cards;
     },
 
+    // deals one card to one hand
     deal: function(cards, hand)
     {
         hand.push(cards.pop());
     },
 
+    // deals a specific number of card to a hand
     deal_amount: function(number, cards, hand)
     {
         for(i = number; i > 0; i--)
@@ -72,13 +74,15 @@ module.exports = {
         }
     },
 
+    // determines the numerical value of the hand
     get_value: function(cards)
     {
         let value = 0;
 
-        forEach(cards =>
-            value += cards[i].value
-        )
+        cards.forEach(cards =>
+        {
+            value += cards.value
+        })
 
         return value;
     },

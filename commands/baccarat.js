@@ -59,6 +59,18 @@ module.exports = {
         // interaction.user is the object representing the User who ran the command
         // interaction.member is the GuildMember object, which represents the user in the specific guild
         
+        // initalizes all the possible bet amounts
+        const playerbet = interaction.options.getInteger('bet_on_player') ?? 0;
+        const bankerbet = interaction.options.getInteger('bet_on_banker') ?? 0;
+        const tiebet = interaction.options.getInteger('bet_on_tie') ?? 0;
+        const playerpairbet = interaction.options.getInteger('bet_on_playerpair') ?? 0;
+        const bankerpairbet = interaction.options.getInteger('bet_on_bankerpair') ?? 0;
+        const panda8bet = interaction.options.getInteger('bet_on_panda8') ?? 0;
+        const dragon7 = interaction.options.getInteger('bet_on_dragon7') ?? 0;
+
+        // initalizes win amount to 0
+        let win = 0;
+
         // initalizes a deck and shuffles it
         let deck = cards.new_deck();
 		cards.shuffle(deck);
@@ -75,13 +87,196 @@ module.exports = {
         cards.deal_amount(2, deck, pHand);
         cards.deal_amount(2, deck, bHand);
 
+        console.log('p');
         console.log(pHand);
+        console.log('b');
         console.log(bHand);
 
+        // determines the value of the current hands
         bValue = get_value(bHand);
+        pValue = get_value(pHand);
 
+        console.log('p');
+        console.log(pValue);
+        console.log('b');
         console.log(bValue);
+        
+        // if player has pair, adds playerpairbet to win
+        if(pHand[0].value == pHand[1].value)
+        {
+            win += playerpairbet * 11;
+        }
 
-        await interaction.reply(`not too fucked up`);
+        // if banker has pair, adds bankerpairbet to win
+        if(bHand[0].value == bHand[1].value)
+        {
+            win += bankerpairbet * 11;
+        }
+
+        // determines if player or banker has a natural win or if there is a natural tie
+        while(!checkForWin())
+        {
+            // saves the starting player hand value
+            const pValueOriginal = pValue;
+
+            // player hand goes first, per regulation
+            // if player hand is less than 6, enters the if
+            if(pValue < 6)
+            {
+                // deals one card to player hand, calculate new player hand value
+                cards.deal(pHand);
+                pValue = get_value(pHand);
+                
+                // makes sure the player hand value follows regulation
+                while (pValue > 9)
+                {
+                    pValue -= 10;
+                }
+            }
+
+            // if the banker hand value is less than 3, enter the if
+            if(bValue < 3)
+            {
+                //deals one card to banker hand, calculate new banker hand value
+                cards.deal(bHand);
+                bValue = get_value(bHand);
+
+                // makes sure the banker hand value follows regulation
+                while (bValue > 9)
+                {
+                    bValue -= 10;
+                }
+            }
+
+            // checks for win after player's possible deal and banker's first possible deal
+            if(checkForWin())
+            {
+                break;
+            }
+
+            // if the banker hand value is equal to 3, enter the if
+            if(bValue == 3)
+            {
+                // if the thrid card in the player hand is not 8, enter the if
+                if(pHand[2].value != 8)
+                {
+                    //deals one card to banker hand, calculate new banker hand value
+                    cards.deal(bHand);
+                    bValue = get_value(bHand);
+
+                    // makes sure the banker hand value follows regulation
+                    while (bValue > 9)
+                    {
+                        bValue -= 10;
+                    }
+                }
+            }
+
+            // checks for win after player's possible deal and banker's first possible deal
+            if(checkForWin())
+            {
+                break;
+            }
+
+            // if the banker hand value is equal to 4, enter the if
+            if(bValue == 4)
+            {
+                // if the thrid card in the player hand is less than 2 or greater than , enter the if
+                if(pHand[2].value < 2 || pHand[2].value > 7)
+                {
+                    //deals one card to banker hand, calculate new banker hand value
+                    cards.deal(bHand);
+                    bValue = get_value(bHand);
+
+                    // makes sure the banker hand value follows regulation
+                    while (bValue > 9)
+                    {
+                        bValue -= 10;
+                    }
+                }
+            }
+
+            // checks for win after player's possible deal and banker's first possible deal
+            if(checkForWin())
+            {
+                break;
+            }
+
+            // if the banker hand value is equal to 5, enter the if
+            if(bValue == 5)
+            {
+                // if the thrid card in the player hand is less than 4 or greater than 7, enter the if
+                if(pHand[2].value < 4 || pHand[2].value > 7)
+                {
+                    //deals one card to banker hand, calculate new banker hand value
+                    cards.deal(bHand);
+                    bValue = get_value(bHand);
+
+                    // makes sure the banker hand value follows regulation
+                    while (bValue > 9)
+                    {
+                        bValue -= 10;
+                    }
+                }
+            }
+
+            // checks for win after player's possible deal and banker's first possible deal
+            if(checkForWin())
+            {
+                break;
+            }
+
+            // if the banker hand value is equal to 6, enter the if
+            if(bValue == 6)
+            {
+                // if the thrid card in the player hand is less than 4 or greater than 7, enter the if
+                if(pHand[2].value == 6 || pHand[2].value ==7)
+                {
+                    //deals one card to banker hand, calculate new banker hand value
+                    cards.deal(bHand);
+                    bValue = get_handvalue(bHand);
+
+                    // makes sure the banker hand value follows regulation
+                    while (bValue > 9)
+                    {
+                        bValue -= 10;
+                    }
+                }
+            }
+
+            // checks for win after player's possible deal and banker's first possible deal
+            if(checkForWin())
+            {
+                break;
+            }
+        }
+    
+    await interaction.reply(`not too fucked up. You win: $${win}`);
     },
-}
+    
+    // checks for win contion
+    checkForWin: function()
+    {
+        // if player hand or banker hand total to 8 or 9, enters if
+        if((pHand == 8 || pHand == 9) || (bHand == 8 || bHand == 9))
+        {
+            // checks for a tie
+            if(pHand == bHand)
+            {
+                win = tiebet * 8;
+            }
+            // checks for a player win
+            else if(pHand > bHand)
+            {
+                win = playerbet;
+            }
+            // defaults to banker
+            else
+            {
+                win = bankerbet - (bankerbet * .05);
+            }
+        }
+    }
+};
+
+    
